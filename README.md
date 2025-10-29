@@ -1,6 +1,8 @@
 # Relatórios Arquitetura Hexagonal
 
-Exemplo de aplicação para geração de relatórios utilizando arquitetura modular de fácil expansão. Com sistema de mensageria **Amazon SQS** para processamento assíncrono, incluindo suporte a **Dead Letter Queue (DLQ)**
+Exemplo de aplicação para geração de relatórios utilizando arquitetura modular de fácil expansão. 
+Conta com sistema de mensageria **Amazon SQS** para processamento assíncrono, incluindo suporte a **Dead Letter Queue (DLQ)**
+Fácil de rodar via docker-compose
 
 ## Tecnologias Utilizadas
 
