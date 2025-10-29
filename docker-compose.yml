@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  elasticmq:
+    image: softwaremill/elasticmq-native:1.4.7
+    container_name: elasticmq
+    ports:
+      - "9324:9324"
+    volumes:
+      - ./docker/elasticmq/elasticmq.conf:/opt/elasticmq.conf:ro
+    networks:
+      - local
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - elasticmq
+    environment:
+      - SQS_ENDPOINT=http://elasticmq:9324
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
