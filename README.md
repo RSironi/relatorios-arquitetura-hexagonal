@@ -1,7 +1,7 @@
 # Relatórios Arquitetura Hexagonal
 
-Exemplo de aplicação para geração de relatórios utilizando arquitetura modular de fácil expansão. Com sistema de mensageria **Amazon SQS** para processamento assíncrono, incluindo suporte a **Dead Letter Queue (DLQ)**
-
+Exemplo de aplicação para geração de relatórios utilizando arquitetura modular de fácil expansão.
+Com sistema de mensageria **Amazon SQS** para processamento assíncrono, incluindo suporte a **Dead Letter Queue (DLQ)** e fácil de iniciar via docker-compose.
 ## Tecnologias Utilizadas
 
 - **Java 21**
@@ -12,19 +12,19 @@ Exemplo de aplicação para geração de relatórios utilizando arquitetura modu
 
 ## Vantagens do Projeto
 
-### 1. **Facilidade de Implementação de Novos Relatórios**
-A arquitetura permite adicionar novos relatórios de forma simples. Basta criar uma nova implementação de `RelatorioUseCaseI` e registrá-la no contexto da aplicação.
+### 1. ** Facilidade de Implementação de Novos Relatórios**
+Principal foco, a arquitetura permite adicionar novos relatórios de forma simples. Basta criar uma nova implementação de `RelatorioUseCaseI` e registrá-la no contexto da aplicação.
 
 ### 2. **Processo Bem Definido**
 O fluxo de geração de relatórios é claro e bem estruturado, desde o envio da mensagem até a finalização do processo.
 
 ### 3. **Facilidade Para Futuras Expansões**
-Seja para criar persistência em banco de dados, salvar o arquivo de relatório gerado ou até mesmo integrar com outros serviços, essas implementações podem ser feitas com mudanças mínimas na estrutura atual.
+Seja para criar persistência em banco de dados, salvar o arquivo de relatório gerado em storage ou até mesmo integrar com outros serviços, essas implementações podem ser feitas com mudanças mínimas na estrutura atual.
 
 ---
 ### Rodando o Projeto
 
-De forma prática, basta executar o comando e irá iniciar tanto o  aplicativo Spring Boot quanto o ElasticMQ.
+De forma prática, basta executar o comando e irá iniciar o ElasticMQ já configurado pelo arquivo `elasticmq.conf` seguido do aplicativo Spring Boot.
 ```bash
 docker-compose up --build
 ```
@@ -48,15 +48,12 @@ docker logs -f elasticmq
    ```
    http://localhost:9324/000000000000/relatorio-fila
    ```
-2. Adicione o cabeçalho:
-   - **Key**: `Content-Type`
-   - **Value**: `application/x-www-form-urlencoded`
-3. No body, selecione `x-www-form-urlencoded` e adicione os seguintes campos:
+2. No body, selecione o tipo `x-www-form-urlencoded` e adicione os seguintes campos:
    - **Key**: `Action`  
      **Value**: `SendMessage`
    - **Key**: `MessageBody`  
      **Value**: `{"codUsuario":123,"codFuncionalidade":1,"filtro":"filtro-exemplo"}`
-4. Envie a requisição.
+3. Envie a requisição.
 
 #### Via AWS CLI
 ```bash
