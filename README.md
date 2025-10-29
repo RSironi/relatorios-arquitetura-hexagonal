@@ -12,7 +12,7 @@ Com sistema de mensageria **Amazon SQS** para processamento assíncrono, incluin
 
 ## Vantagens do Projeto
 
-### 1. ** Facilidade de Implementação de Novos Relatórios**
+### 1. **Facilidade de Implementação de Novos Relatórios**
 Principal foco, a arquitetura permite adicionar novos relatórios de forma simples. Basta criar uma nova implementação de `RelatorioUseCaseI` e registrá-la no contexto da aplicação.
 
 ### 2. **Processo Bem Definido**
